@@ -84,9 +84,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CannonballCollision.cs" />
     <Compile Include="Assets\Scripts\CannonballSpawner.cs" />
-    <Compile Include="Assets\Scripts\CompassPositioning.cs" />
+    <Compile Include="Assets\Scripts\InteractionScript.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
+    <Compile Include="Assets\Scripts\Tags.cs" />
     <Compile Include="Assets\Scripts\WaterFloating.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,32 +4,37 @@ using UnityEngine;
 
 public class ShipMovement : MonoBehaviour {
 
-    [SerializeField]
-    private float _speed;
+    public float speed;
+    public float maxSpeed;
+    public float rotationSpeed;
 
     private Rigidbody _rigidbody;
     private Transform _rotator;
 
+    private Transform _compass;
+
     public void Awake() {
         _rigidbody = GetComponent<Rigidbody>();
         _rotator = GetComponentInParent<Transform>();
+
+        _compass = GetComponentInChildren<InteractionScript>().gameObject.transform;
     }
 
-    public void Update() {
+    public void FixedUpdate() {
         //Replace keys with mapped controls in unity
 
         if(Input.GetKey(KeyCode.W)) {
-            _rigidbody.AddRelativeForce(new Vector3(0, _speed, 0));
+            _rigidbody.AddRelativeForce(new Vector3(0, speed, 0));
         } else if(Input.GetKey(KeyCode.S)) {
-            _rigidbody.AddRelativeForce(new Vector3(0, -_speed, 0));
+            _rigidbody.AddRelativeForce(new Vector3(0, -speed, 0));
         }
 
-        Debug.Log(_rigidbody.velocity.magnitude);
-
         if(Input.GetKey(KeyCode.A)) {
-            _rotator.Rotate(new Vector3(1, 0, 0));
+            _rotator.Rotate(new Vector3(rotationSpeed, 0, 0));
+            _compass.Rotate(new Vector3(0, 0, -rotationSpeed));
         } else if(Input.GetKey(KeyCode.D)) {
-            _rotator.Rotate(new Vector3(-1, 0, 0));
+            _rotator.Rotate(new Vector3(-rotationSpeed, 0, 0));
+            _compass.Rotate(new Vector3(0, 0, rotationSpeed));
         }
     }
 }
