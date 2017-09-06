@@ -2,31 +2,55 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum SpawnSource {
+    Player,
+    EnemyHeavyWarship,
+    EnemyLightFrigate,
+}
+
 public class CannonballSpawner : MonoBehaviour {
 
     public GameObject cannonball;
     public float cannonballSpeed;
+    public float cannonballLifetime;
+    public float cooldown;
     public bool isRight;
 
-    public void Update() {
-        if (Input.GetKeyDown(KeyCode.Q) && !isRight) {
-            Debug.Log("Shoot left!");
-            CreateBall();
-        } else if (Input.GetKeyDown(KeyCode.E) && isRight) {
-            Debug.Log("Shoot right!");
-            CreateBall();
-        }
+    private Rigidbody _shipRb;
+    private float _cooldownTimer;
+
+    public void Awake() {
+        _shipRb = GetComponentInParent<Rigidbody>();
+
+        _cooldownTimer = 0f;
     }
 
-    public void CreateBall() {
-        GameObject cannonballInstance = Instantiate(cannonball);
-        cannonballInstance.transform.position = transform.position;
+    public void Update() {
+        if ((Input.GetKeyDown(KeyCode.Q) && !isRight || Input.GetKeyDown(KeyCode.E) && isRight) && _cooldownTimer <= 0f) {
+            Fire();
+        }
 
-        cannonballInstance.transform.rotation = GetComponentInParent<ShipMovement>().gameObject.transform.rotation;
+        _cooldownTimer -= Time.deltaTime;
+    }
+
+    public void Fire() {
+        GameObject cannonballInstance = Instantiate(cannonball);
+        CannonballScript ballInfo = cannonball.GetComponent<CannonballScript>();
+        ballInfo.Source = SpawnSource.EnemyHeavyWarship;
+        ballInfo.Lifetime = cannonballLifetime;
+
+        cannonballInstance.transform.position = transform.position;
+        cannonballInstance.transform.rotation = transform.rotation;
 
         Rigidbody rigidbody = cannonballInstance.GetComponent<Rigidbody>();
 
+        if(_shipRb != null) {
+            rigidbody.velocity = _shipRb.velocity;
+        }
+
         if (isRight) rigidbody.AddRelativeForce(new Vector3(0, 0, -cannonballSpeed));
         else rigidbody.AddRelativeForce(new Vector3(0, 0, cannonballSpeed));
+
+        _cooldownTimer = cooldown;
     }
 }

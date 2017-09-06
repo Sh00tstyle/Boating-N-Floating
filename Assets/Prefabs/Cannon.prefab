@@ -53,4 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
   cannonballSpeed: 3000
+  cannonballLifetime: 2
   isRight: 0
