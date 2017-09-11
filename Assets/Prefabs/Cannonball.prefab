@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Source: 1
-  Lifetime: 2
+  Lifetime: 7
 --- !u!135 &135990295589993454
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -199,7 +199,7 @@ SphereCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713601143597870}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5

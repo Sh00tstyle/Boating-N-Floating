@@ -117,13 +117,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Boating N Floating.Plugins.csproj">
-      <Project>{9FF4B90D-D996-8A2B-90BC-3B12616049A8}</Project>
-      <Name>Boating N Floating.Plugins</Name>
-    </ProjectReference>
     <ProjectReference Include="Boating N Floating.csproj">
       <Project>{E46D54DF-9230-72EF-E7C1-EEB8727603F4}</Project>
       <Name>Boating N Floating</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boating N Floating.Plugins.csproj">
+      <Project>{9FF4B90D-D996-8A2B-90BC-3B12616049A8}</Project>
+      <Name>Boating N Floating.Plugins</Name>
     </ProjectReference>
     <ProjectReference Include="Boating N Floating.Editor.Plugins.csproj">
       <Project>{9A831A25-47BA-C5D2-89C9-3A6EF8F8A5E0}</Project>
@@ -166,6 +166,7 @@
     <Compile Include="Assets\PostProcessing\Editor\Utils\EditorResources.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Utils\FxStyles.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
+    <Compile Include="Assets\Scripts\Editor\FlockingAIEditor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\GhostShader.shader" />
