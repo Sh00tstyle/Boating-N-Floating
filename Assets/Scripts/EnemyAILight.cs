@@ -56,10 +56,10 @@ public class EnemyAILight : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.tag == "Ram") {
+        if (collision.gameObject.tag == Tags.RAM) {
             health.TakeDamage(20);
         }
-        else if (collision.gameObject.tag == "Cannonball") {
+        else if (collision.gameObject.tag == Tags.CANNONBALL) {
             CannonballScript ball = collision.gameObject.GetComponent<CannonballScript>();
 
             if (ball.Source == SpawnSource.Player) {

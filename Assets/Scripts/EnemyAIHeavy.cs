@@ -76,10 +76,10 @@ public class EnemyAIHeavy : MonoBehaviour {
     }
 
     private void OnCollisionEnter(Collision collision) {
-        if(collision.gameObject.tag == "Player") {
+        if(collision.gameObject.tag == Tags.PLAYER) {
             health.TakeDamage(20);
         }
-        else if(collision.gameObject.tag == "Cannonball") {
+        else if(collision.gameObject.tag == Tags.CANNONBALL) {
             CannonballScript ball = collision.gameObject.GetComponent<CannonballScript>();
 
             if(ball.Source == SpawnSource.Player) {

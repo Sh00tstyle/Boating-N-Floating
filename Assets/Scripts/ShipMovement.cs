@@ -20,15 +20,12 @@ public class ShipMovement : MonoBehaviour {
         _rigidbody = GetComponent<Rigidbody>();
         _rotator = GetComponentInParent<Transform>();
 
-        _compass = GetComponentInChildren<InteractionScript>().gameObject.transform;
+        _compass = GetComponentInChildren<CratePickupScript>().gameObject.transform;
     }
 
     public void FixedUpdate() {
         ProcessMovementInput();
         ProcessRotationInput();
-
-        Debug.Log("Current speed level " + _currentSpeed);
-        Debug.Log("Velocity " + _rigidbody.velocity.magnitude);
     }
 
     private void ProcessMovementInput() {
@@ -44,10 +41,8 @@ public class ShipMovement : MonoBehaviour {
 
         if(_rigidbody.velocity.magnitude < _currentSpeed) {
             _rigidbody.AddRelativeForce(new Vector3(0, acceleration, 0));
-            Debug.Log("Accelerating");
         } else if(_rigidbody.velocity.magnitude > _currentSpeed && _currentSpeed != 0) {
             _rigidbody.AddRelativeForce(new Vector3(0, -acceleration, 0));
-            Debug.Log("Deccelerating");
         }
     }
 
