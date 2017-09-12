@@ -38,20 +38,18 @@ public class UpgradeManager : MonoBehaviour {
     }
 
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.I)) {
-            _upgradeCanvas.enabled = !_upgradeCanvas.enabled;
-
-            if(_upgradeCanvas.enabled) {
-                _verticalIndex = 0;
-                _horizontalIndex = 0;
-
-                DrawGoldAmount();
-            }
-        }
-
         if(_upgradeCanvas.enabled == true) {
             ProcessUpgradeSelection();
         }
+    }
+
+    public void ActivateUpgradeWindow() {
+        _upgradeCanvas.enabled = true;
+
+        _verticalIndex = 0;
+        _horizontalIndex = 0;
+
+        DrawGoldAmount();
     }
 
     private void ProcessUpgradeSelection() {

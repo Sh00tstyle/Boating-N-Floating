@@ -135,6 +135,7 @@
     <Compile Include="Assets\Scripts\BombScript.cs" />
     <Compile Include="Assets\Scripts\BombSpawner.cs" />
     <Compile Include="Assets\Scripts\Buoyancy.cs" />
+    <Compile Include="Assets\Scripts\CameraShifting.cs" />
     <Compile Include="Assets\Scripts\CannonballScript.cs" />
     <Compile Include="Assets\Scripts\CannonballSpawnerEnemy.cs" />
     <Compile Include="Assets\Scripts\CannonballSpawnerPlayer.cs" />
@@ -142,6 +143,8 @@
     <Compile Include="Assets\Scripts\CratePickupScript.cs" />
     <Compile Include="Assets\Scripts\FlockingAI.cs" />
     <Compile Include="Assets\Scripts\HealthScript.cs" />
+    <Compile Include="Assets\Scripts\HudManager.cs" />
+    <Compile Include="Assets\Scripts\LifetimeScript.cs" />
     <Compile Include="Assets\Scripts\LocalNavMeshBuilder.cs" />
     <Compile Include="Assets\Scripts\NavMeshSourceTag.cs" />
     <Compile Include="Assets\Scripts\ResourceManager.cs" />
@@ -151,6 +154,7 @@
     <Compile Include="Assets\Scripts\UpgradeInfo.cs" />
     <Compile Include="Assets\Scripts\UpgradeManager.cs" />
     <Compile Include="Assets\Scripts\WaterFloating.cs" />
+    <Compile Include="Assets\Scripts\WeaponSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Shaders\GhostShader.shader" />

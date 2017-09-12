@@ -191,7 +191,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Source: 1
-  Lifetime: 7
+  Lifetime: 2
+  WaterImpactParticles: {fileID: 1424060316963520, guid: 095a9a98359f3a143b5a859f05391120,
+    type: 2}
+  CannonballImpactParticles: {fileID: 1356532664949310, guid: fe38ee2bccea939418bcac68dd0e412d,
+    type: 2}
 --- !u!135 &135990295589993454
 SphereCollider:
   m_ObjectHideFlags: 1

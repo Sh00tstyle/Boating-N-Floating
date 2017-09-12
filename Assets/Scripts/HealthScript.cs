@@ -7,9 +7,6 @@ public class HealthScript : MonoBehaviour {
     public float Health;
     public float MaxRegenTime;
 
-    [Tooltip("Only use this for the player, since it draws this health bar to the screen!!")]
-    public HudManager hudManager;
-
     private float _startingHealth;
     private float _remainingRegenTime;
     private float _healingAmtPerSec;
@@ -24,15 +21,21 @@ public class HealthScript : MonoBehaviour {
         if(_remainingRegenTime > 0f && Time.deltaTime - _lastRegenTick >= 1f) { //ensuring you will only get one heal per sec
             GainHealth(_healingAmtPerSec);
             _lastRegenTick = Time.time;
+
+            print("Regen");
         }
 
         _remainingRegenTime -= Time.deltaTime;
+
+        //DEBUG
+
+        if(Input.GetKeyDown(KeyCode.N)) {
+            TakeDamage(10f);
+        }
     }
 
     public void TakeDamage(float Damage) {
         Health -= Damage;
-
-        if(hudManager != null) hudManager.DrawHealth(Health);
     }
 
     public void GainHealth(float Heal) {
@@ -41,8 +44,6 @@ public class HealthScript : MonoBehaviour {
         if(Health > _startingHealth) {
             Health = _startingHealth;
         }
-
-        if(hudManager != null) hudManager.DrawHealth(Health);
     }
 
     public void ApplyRegeneration(float duration, float amountPerSec) {
@@ -54,5 +55,9 @@ public class HealthScript : MonoBehaviour {
 
     public float RemainingRegenTime {
         get { return _remainingRegenTime; }
+    }
+
+    public float StartingHealth {
+        get { return _startingHealth; }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine;
 public class CannonballSpawnerPlayer : MonoBehaviour {
 
     public GameObject cannonball;
+    public GameObject cannonFireParticle;
+
     public float cannonballSpeed;
     public float cannonballLifetime;
     public float cooldown;
@@ -13,21 +15,22 @@ public class CannonballSpawnerPlayer : MonoBehaviour {
     private Rigidbody _shipRb;
     private float _cooldownTimer;
 
+    private ParticleSystem[] _particles;
+
     public void Awake() {
         _shipRb = GetComponentInParent<Rigidbody>();
-
         _cooldownTimer = 0f;
+
+        _particles = GetComponentsInChildren<ParticleSystem>();
     }
 
     public void Update() {
-        if ((Input.GetKeyDown(KeyCode.Q) && !isRight || Input.GetKeyDown(KeyCode.E) && isRight) && _cooldownTimer <= 0f) {
-            Fire();
-        }
-
         _cooldownTimer -= Time.deltaTime;
     }
 
     public void Fire() {
+        if (_cooldownTimer > 0f) return;
+
         GameObject cannonballInstance = Instantiate(cannonball);
         CannonballScript ballInfo = cannonball.GetComponent<CannonballScript>();
         ballInfo.Source = SpawnSource.EnemyHeavyWarship;
@@ -44,6 +47,10 @@ public class CannonballSpawnerPlayer : MonoBehaviour {
 
         if (isRight) rigidbody.AddRelativeForce(new Vector3(0, 0, -cannonballSpeed));
         else rigidbody.AddRelativeForce(new Vector3(0, 0, cannonballSpeed));
+
+        for(int i = 0; i < _particles.Length; i++) {
+            _particles[i].Play();
+        }
 
         _cooldownTimer = cooldown;
     }

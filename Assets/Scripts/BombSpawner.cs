@@ -6,8 +6,14 @@ public class BombSpawner : MonoBehaviour {
 
     public GameObject bomb;
 
+    private ResourceManager _resources;
+
+    public void Awake() {
+        _resources = GetComponentInParent<ResourceManager>();
+    }
+
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.J)) {
+        if(Input.GetKeyDown(KeyCode.J) && _resources.BombAmount > 0) {
             DropBomb();
         }
     }
@@ -15,5 +21,7 @@ public class BombSpawner : MonoBehaviour {
     public void DropBomb() {
         GameObject newBomb = Instantiate(bomb);
         newBomb.transform.position = transform.position;
+
+        _resources.UseBomb();
     }
 }

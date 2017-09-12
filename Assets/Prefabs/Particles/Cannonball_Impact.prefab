@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4625131054941928}
+  - component: {fileID: 114877609448338346}
   m_Layer: 0
   m_Name: Cannonball_Impact
   m_TagString: Untagged
@@ -132,6 +133,18 @@ Transform:
   m_Father: {fileID: 4625131054941928}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114877609448338346
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1356532664949310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdf2f9f63a66bc140ab487929e57fe69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lifetime: 3
 --- !u!198 &198093219911627656
 ParticleSystem:
   m_ObjectHideFlags: 1
