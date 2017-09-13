@@ -12,6 +12,9 @@ public class FlockingAIEditor : Editor {
 
         DrawDefaultInspector();
 
-        if(ai.debugMode) EditorGUILayout.HelpBox("White = velocity, Green = Allignment, Blue = Cohesion, Red = Seperation", MessageType.Info);
+        if (ai.debugMode) {
+            EditorGUILayout.Vector3Field("Velocity", ai.Velocity);
+            EditorGUILayout.HelpBox("White = velocity, Green = Allignment, Blue = Cohesion, Red = Seperation", MessageType.Info);
+        }
     }
 }

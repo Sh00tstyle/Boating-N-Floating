@@ -32,6 +32,8 @@ public class HealthScript : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.N)) {
             TakeDamage(10f);
         }
+
+        if (Health < 1) Destroy(this.gameObject);
     }
 
     public void TakeDamage(float Damage) {

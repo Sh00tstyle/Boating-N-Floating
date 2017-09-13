@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class FlockingAI : MonoBehaviour {
 
-    private AiController controller;
+    private AISpawner controller;
+    private Rigidbody rb;
     private Vector3 velocity;
     public float MaxSpeed;
     public float MinSpeed;
@@ -17,20 +18,26 @@ public class FlockingAI : MonoBehaviour {
     public float SeperationFactor;
     public float SeperationRange;
 
+    public int TargetFactor;
+
     public float AttackRange;
     public float FireCooldown;
     private float fireCooldownTimer;
 
     public bool debugMode = false;
 
-    public Transform Target;
+    private Transform Target;
+    public Transform Player;
 
 	// Use this for initialization
 	void Start () {
+        rb = GetComponent<Rigidbody>();
+        Target = Player;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //velocity = Vector3.zero;
 
         Vector3 allignment = AllignmentFactor * calculateAlignment();
         Vector3 cohesion = CohesionFactor * calculateCohesion();
@@ -40,14 +47,21 @@ public class FlockingAI : MonoBehaviour {
         velocity += cohesion;
         velocity += seperation;
 
-        velocity.Normalize();
+        //velocity.Normalize();
 
-        transform.rotation = Quaternion.LookRotation(velocity);
+        velocity.y = 0;
+        velocity *= Time.deltaTime;
 
         if (velocity.magnitude > MaxSpeed) velocity = velocity.normalized * MaxSpeed;
         if (velocity.magnitude < MinSpeed) velocity = velocity.normalized * MinSpeed;
 
-        transform.position += velocity;
+        rb.velocity = velocity * 5;
+        //print(rb.velocity);
+        //transform.position += velocity;
+
+        transform.rotation = Quaternion.LookRotation(rb.velocity);
+
+        //if (transform.position.y != 0) transform.position = new Vector3(transform.position.x, 0, transform.position.z);
 
         checkAttack();
         if (fireCooldownTimer > 0) {
@@ -56,10 +70,10 @@ public class FlockingAI : MonoBehaviour {
         }
 
         if(debugMode) {
-            Debug.DrawRay(transform.position, velocity * 1000, Color.white);
-            Debug.DrawRay(transform.position, allignment * 10000, Color.green);
-            Debug.DrawRay(transform.position, cohesion * 10000, Color.blue);
-            Debug.DrawRay(transform.position, seperation * 10000, Color.red);
+            Debug.DrawRay(transform.position, velocity * 10, Color.white);
+            Debug.DrawRay(transform.position, allignment * 100, Color.green);
+            Debug.DrawRay(transform.position, cohesion * 100, Color.blue);
+            Debug.DrawRay(transform.position, seperation * 100, Color.red);
         }
 
     }
@@ -79,13 +93,22 @@ public class FlockingAI : MonoBehaviour {
         }
 
         Vector3 targetDistance = Target.position - transform.position;
-        averageVelocity += targetDistance.normalized * MaxSpeed;
+        averageVelocity += targetDistance.normalized * (MaxSpeed * TargetFactor);
 
-        averageVelocity /= count + 1;
+        averageVelocity /= count + TargetFactor;
 
-        Vector3 alignment = averageVelocity - velocity;
-
-        return alignment;
+        // As long as the vector is greater than 0
+        if (averageVelocity.magnitude > 0) {
+            // Implement Reynolds: Steering = Desired - Velocity
+            averageVelocity.Normalize();
+            averageVelocity *= MaxSpeed;
+            Vector3 steer = averageVelocity - velocity;
+            if (steer.magnitude > MaxSteeringForce) steer = steer.normalized * MaxSteeringForce;
+            return steer;
+        }
+        else {
+            return Vector3.zero;
+        }
     }
 
     private Vector3 calculateCohesion() {
@@ -182,7 +205,7 @@ public class FlockingAI : MonoBehaviour {
         set { velocity = value; }
     }
 
-    public void SetController(AiController aic) {
+    public void SetController(AISpawner aic) {
         controller = aic;
     }
 }
