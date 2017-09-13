@@ -12,28 +12,46 @@ public class CannonballSpawnerPlayer : MonoBehaviour {
     public float cooldown;
     public bool isRight;
 
+    public float minDelay;
+    public float maxDelay;
+
+    public AudioClip[] _cannonSounds;
+
     private Rigidbody _shipRb;
+    private AudioSource _audioSource;
     private float _cooldownTimer;
+    private float _delayTimer;
+    private bool _hasFired;
 
     private ParticleSystem[] _particles;
 
     public void Awake() {
         _shipRb = GetComponentInParent<Rigidbody>();
+        _audioSource = GetComponent<AudioSource>();
         _cooldownTimer = 0f;
+        _hasFired = true;
 
-        _particles = GetComponentsInChildren<ParticleSystem>();
+        _particles = GetComponentsInChildren<ParticleSystem>(); 
     }
 
     public void Update() {
+        if (!_hasFired && _delayTimer <= 0f && _cooldownTimer <= 0f) Fire();
+
         _cooldownTimer -= Time.deltaTime;
+        _delayTimer -= Time.deltaTime;
+    }
+
+    public void SetDelayTimer() {
+        if (_cooldownTimer > 0f) return;
+
+        _delayTimer = Random.Range(minDelay, maxDelay);
+        _hasFired = false;
     }
 
     public void Fire() {
-        if (_cooldownTimer > 0f) return;
-
         GameObject cannonballInstance = Instantiate(cannonball);
         CannonballScript ballInfo = cannonball.GetComponent<CannonballScript>();
-        ballInfo.Source = SpawnSource.EnemyHeavyWarship;
+        ballInfo.Source = SpawnSource.Player;
         ballInfo.Lifetime = cannonballLifetime;
 
         cannonballInstance.transform.position = transform.position;
@@ -52,6 +70,10 @@ public class CannonballSpawnerPlayer : MonoBehaviour {
             _particles[i].Play();
         }
 
+        _audioSource.clip = _cannonSounds[Random.Range(0, _cannonSounds.Length - 1)];
+        _audioSource.Play();
+
         _cooldownTimer = cooldown;
+        _hasFired = true;
     }
 }

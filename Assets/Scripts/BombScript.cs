@@ -11,13 +11,11 @@ public class BombScript : MonoBehaviour {
     public void OnTriggerEnter(Collider other) {
         if (other.tag == Tags.GROUND || other.tag == Tags.COMPASS) return;
 
-        //TODO: Add explosion and health drain in there
+        //Add explosion
 
         if(other.gameObject.GetComponent<HealthScript>()) {
             other.gameObject.GetComponent<HealthScript>().TakeDamage(bombDamage);
         }
-
-        print(other.gameObject.name);
 
         Destroy(gameObject);
     }

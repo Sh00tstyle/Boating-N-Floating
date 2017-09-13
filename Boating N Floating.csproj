@@ -132,14 +132,17 @@
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Rotation.cs" />
     <Compile Include="Assets\Scripts\AiController.cs" />
+    <Compile Include="Assets\Scripts\AudioRandomizer.cs" />
     <Compile Include="Assets\Scripts\BombScript.cs" />
     <Compile Include="Assets\Scripts\BombSpawner.cs" />
-    <Compile Include="Assets\Scripts\Buoyancy.cs" />
+    <Compile Include="Assets\Scripts\BuoyancyTests\Buoyancy.cs" />
+    <Compile Include="Assets\Scripts\BuoyancyTests\WaterFloating.cs" />
     <Compile Include="Assets\Scripts\CameraShifting.cs" />
     <Compile Include="Assets\Scripts\CannonballScript.cs" />
     <Compile Include="Assets\Scripts\CannonballSpawnerEnemy.cs" />
     <Compile Include="Assets\Scripts\CannonballSpawnerPlayer.cs" />
     <Compile Include="Assets\Scripts\CompassPositioning.cs" />
+    <Compile Include="Assets\Scripts\CrateManagerScript.cs" />
     <Compile Include="Assets\Scripts\CratePickupScript.cs" />
     <Compile Include="Assets\Scripts\FlockingAI.cs" />
     <Compile Include="Assets\Scripts\HealthScript.cs" />
@@ -153,7 +156,6 @@
     <Compile Include="Assets\Scripts\Tags.cs" />
     <Compile Include="Assets\Scripts\UpgradeInfo.cs" />
     <Compile Include="Assets\Scripts\UpgradeManager.cs" />
-    <Compile Include="Assets\Scripts\WaterFloating.cs" />
     <Compile Include="Assets\Scripts\WeaponSelector.cs" />
   </ItemGroup>
   <ItemGroup>

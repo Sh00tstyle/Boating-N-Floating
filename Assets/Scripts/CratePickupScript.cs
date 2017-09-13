@@ -7,8 +7,11 @@ public class CratePickupScript : MonoBehaviour {
     public float regenTimePerCrate;
     public float regenAmtPerSec;
 
+    public CrateManagerScript crateManager;
+
     public void OnTriggerStay(Collider other) {
         if(other.tag == Tags.CRATE) {
+            crateManager.RemoveCrate(other.gameObject);
             Destroy(other.gameObject);
 
             HealthScript health = null;
