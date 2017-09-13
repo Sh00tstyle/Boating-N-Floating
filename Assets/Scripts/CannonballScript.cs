@@ -13,15 +13,26 @@ public class CannonballScript : MonoBehaviour {
     private void OnTriggerEnter(Collider other) {
         GameObject particles;
 
-        if(other.gameObject.layer == LayerMask.NameToLayer("Water")) {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Water")) {
             particles = Instantiate(WaterImpactParticles);
             particles.transform.position = transform.position;
-        } else {
+            print("Hit Water");
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == Tags.PLAYER && Source != SpawnSource.Player) {
             particles = Instantiate(CannonballImpactParticles);
             particles.transform.position = transform.position;
+            print("Hit Player");
+            Destroy(gameObject);
+        }
+        else if (other.gameObject.tag == Tags.ENEMY && Source != SpawnSource.EnemyHeavyWarship && Source != SpawnSource.EnemyLightFrigate) {
+            particles = Instantiate(CannonballImpactParticles);
+            particles.transform.position = transform.position;
+            print("Hit Enemy");
+            Destroy(gameObject);
         }
 
-        Destroy(gameObject);
+        
     }
 
     public void Update () {

@@ -10,4 +10,5 @@ public class Tags : MonoBehaviour {
     public static string PLAYER = "Player";
     public static string GROUND = "Ground";
     public static string COMPASS = "Compass";
+    public static string ENEMY = "Enemy";
 }

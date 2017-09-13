@@ -34,7 +34,7 @@ public class WeaponSelector : MonoBehaviour {
             case Weapon.Cannonball:
                 for(int i = 0; i < _cannonballSpawner.Length; i++) {
                     if(_camShifting.IsRight() && _cannonballSpawner[i].isRight || !_camShifting.IsRight() && !_cannonballSpawner[i].isRight) {
-                        _cannonballSpawner[i].Fire();
+                        _cannonballSpawner[i].SetDelayTimer();
                     }
                 }
                 break;
@@ -69,6 +69,8 @@ public class WeaponSelector : MonoBehaviour {
             default:
                 break;
         }
+
+        print(_activeWeapon);
     }
 
 }

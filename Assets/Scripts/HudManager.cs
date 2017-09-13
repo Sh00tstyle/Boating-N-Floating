@@ -7,10 +7,9 @@ public class HudManager : MonoBehaviour {
 
     private ShipMovement _movement;
     private HealthScript _health;
-    private ResourceManager _resources;
 
     private enum HudImages { Compass, HealthEmpty, HealthFull, SpeedEmpty, SpeedFull, BombIcon };
-    private enum HudTexts { BombCounter };
+    private enum HudTexts { };
 
     private Image[] _images;
     private Text[] _texts;
@@ -18,7 +17,6 @@ public class HudManager : MonoBehaviour {
     public void Awake() {
         _movement = GetComponentInParent<ShipMovement>();
         _health = GetComponentInParent<HealthScript>();
-        _resources = GetComponentInParent<ResourceManager>();
 
         _images = GetComponentsInChildren<Image>();
         _texts = GetComponentsInChildren<Text>();
@@ -27,7 +25,6 @@ public class HudManager : MonoBehaviour {
     public void Update() {
         DrawSpeed();
         DrawHealth();
-        DrawBombAmount();
     }
 
     public void DrawSpeed() {
@@ -36,9 +33,5 @@ public class HudManager : MonoBehaviour {
 
     public void DrawHealth() {
         _images[(int)HudImages.HealthFull].fillAmount = _health.Health / _health.StartingHealth;
-    }
-
-    public void DrawBombAmount() {
-        _texts[(int)HudTexts.BombCounter].text = "" + _resources.BombAmount;
     }
 }

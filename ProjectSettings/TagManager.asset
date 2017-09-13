@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Ram
   - Compass
+  - Enemy
   layers:
   - Default
   - TransparentFX
