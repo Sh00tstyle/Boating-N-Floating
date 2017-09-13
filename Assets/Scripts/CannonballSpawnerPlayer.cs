@@ -49,6 +49,9 @@ public class CannonballSpawnerPlayer : MonoBehaviour {
     }
 
     public void Fire() {
+        //DEBUG AND PROFILE
+        //GameObject.Find("Analysis").GetComponent<Analysis>().playerinfo.ShotsFired++;
+
         GameObject cannonballInstance = Instantiate(cannonball);
         CannonballScript ballInfo = cannonball.GetComponent<CannonballScript>();
         ballInfo.Source = SpawnSource.Player;

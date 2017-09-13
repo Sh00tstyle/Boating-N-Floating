@@ -22,9 +22,9 @@ GameObject:
   - component: {fileID: 33257845267710022}
   - component: {fileID: 136595558368282624}
   - component: {fileID: 23123325318041320}
-  - component: {fileID: 114368026733646198}
   - component: {fileID: 54366136506117626}
   - component: {fileID: 114317999651934528}
+  - component: {fileID: 114922387369744472}
   m_Layer: 0
   m_Name: Bomb
   m_TagString: Untagged
@@ -112,7 +112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 0}
   bombDamage: 0
---- !u!114 &114368026733646198
+--- !u!114 &114922387369744472
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -120,13 +120,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1577311089717738}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b91975377d3744d9d24a1859c4dcd5, type: 3}
+  m_Script: {fileID: 11500000, guid: f13bdcf71e2df6a48969ebf38a1a986c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 0.5
+  waterLevel: 0
   floatHeight: 1.5
   buoyancyCentreOffset: {x: 0, y: 1, z: 0}
-  bounceDamp: 0.7
+  bounceDamp: 0.5
 --- !u!136 &136595558368282624
 CapsuleCollider:
   m_ObjectHideFlags: 1

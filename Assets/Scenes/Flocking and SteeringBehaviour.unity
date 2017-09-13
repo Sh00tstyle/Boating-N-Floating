@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -538,7 +538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agents: []
   FlockSize: 10
-  SpawnRange: 7
+  SpawnRange: 5
   AgentPrefab: {fileID: 1424761470806350, guid: ec40a5776b97613429eb090d4d6e1590,
     type: 2}
   Target: {fileID: 525129387}
@@ -579,7 +579,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1650670751}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4a720d8f499f9b4a806cb1fb8f85a6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 685fe33c7be59b94e8fdf58de262a6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &1650670753
@@ -653,8 +653,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1841231158}
-  m_LocalRotation: {x: 0.45487717, y: 0.42637154, z: 0.26346862, w: -0.7361239}
-  m_LocalPosition: {x: 11.312332, y: -70.99392, z: -44.284943}
+  m_LocalRotation: {x: 0.013148774, y: 0.94420123, z: 0.32690808, w: -0.03797698}
+  m_LocalPosition: {x: -21.625528, y: -50.86048, z: 59.741653}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

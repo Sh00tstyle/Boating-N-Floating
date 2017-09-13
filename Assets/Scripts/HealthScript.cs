@@ -15,14 +15,13 @@ public class HealthScript : MonoBehaviour {
 
     public void Awake() {
         _startingHealth = Health;
+        _lastRegenTick = Time.time;
     }
 
     public void Update() {
-        if(_remainingRegenTime > 0f && Time.deltaTime - _lastRegenTick >= 1f) { //ensuring you will only get one heal per sec
+        if(_remainingRegenTime > 0f && Time.time - _lastRegenTick >= 1f) { //ensuring you will only get one heal per sec
             GainHealth(_healingAmtPerSec);
             _lastRegenTick = Time.time;
-
-            print("Regen");
         }
 
         _remainingRegenTime -= Time.deltaTime;
@@ -32,12 +31,24 @@ public class HealthScript : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.N)) {
             TakeDamage(10f);
         }
-
-        if (Health < 1) Destroy(this.gameObject);
     }
 
     public void TakeDamage(float Damage) {
+        //DEBUG AND PROFILE
+        /*if(gameObject.tag == Tags.PLAYER) {
+            GameObject.Find("Analysis").GetComponent<Analysis>().playerinfo.DamageTaken++;
+        }*/
+
         Health -= Damage;
+
+        if(Health <= 0) {
+            if(gameObject.tag == Tags.PLAYER) {
+                transform.position = Vector3.zero;
+                GainHealth(100);
+            } else {
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     public void GainHealth(float Heal) {
@@ -53,6 +64,8 @@ public class HealthScript : MonoBehaviour {
 
         _remainingRegenTime += duration;
         _healingAmtPerSec = amountPerSec;
+
+        if (_remainingRegenTime > MaxRegenTime) _remainingRegenTime = MaxRegenTime;
     }
 
     public float RemainingRegenTime {

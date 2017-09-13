@@ -18,7 +18,7 @@ public class BehaviourAI : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.tag == "Player") {
-            health.TakeDamage(20);
+            //health.TakeDamage(20);
         }
         else if (collision.gameObject.tag == "Cannonball") {
             CannonballScript ball = collision.gameObject.GetComponent<CannonballScript>();

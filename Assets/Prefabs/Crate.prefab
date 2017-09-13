@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 33783947010025272}
   - component: {fileID: 136385507688023808}
   - component: {fileID: 23898276190546450}
-  - component: {fileID: 114221116297404192}
   - component: {fileID: 54858357622854182}
+  - component: {fileID: 114833366996957906}
   m_Layer: 0
   m_Name: Crate
   m_TagString: Crate
@@ -98,7 +98,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &114221116297404192
+--- !u!114 &114833366996957906
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -106,13 +106,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1783279560034554}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 21b91975377d3744d9d24a1859c4dcd5, type: 3}
+  m_Script: {fileID: 11500000, guid: f13bdcf71e2df6a48969ebf38a1a986c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterLevel: 0.5
+  waterLevel: 0
   floatHeight: 1.5
   buoyancyCentreOffset: {x: 0, y: 1, z: 0}
-  bounceDamp: 0.7
+  bounceDamp: 0.5
 --- !u!136 &136385507688023808
 CapsuleCollider:
   m_ObjectHideFlags: 1
