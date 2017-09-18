@@ -168,6 +168,7 @@
     <Compile Include="Assets\Scripts\ReferenceHolder.cs" />
     <Compile Include="Assets\Scripts\ResolutionMenuManager.cs" />
     <Compile Include="Assets\Scripts\ResourceManager.cs" />
+    <Compile Include="Assets\Scripts\ScreenShakeScript.cs" />
     <Compile Include="Assets\Scripts\ShipMovement.cs" />
     <Compile Include="Assets\Scripts\SpawnSource.cs" />
     <Compile Include="Assets\Scripts\StartMenuManager.cs" />

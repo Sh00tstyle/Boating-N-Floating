@@ -211,7 +211,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424761470806350}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -71.697266, y: 0.00000011920929, z: -15.150764}
+  m_LocalPosition: {x: 70.30998, y: -1.5999998, z: 76.51437}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_Children:
   - {fileID: 4423958929422346}
@@ -365,7 +365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
 --- !u!114 &114098206917407008
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
 --- !u!114 &114168994534986202
@@ -407,7 +407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
 --- !u!114 &114495321579291374
@@ -424,10 +424,10 @@ MonoBehaviour:
   Player: {fileID: 0}
   CrateManager: {fileID: 0}
   HealthDivider: 4
-  PlayerDetectionRange: 75
+  PlayerDetectionRange: 100
   CrateDetectionRange: 75
   CratePickupRange: 5
-  AttackRange: 20
+  AttackRange: 45
   FireCooldown: 5
 --- !u!114 &114636990444993198
 MonoBehaviour:
@@ -454,7 +454,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 100
-  MaxRegenTime: 2
 --- !u!114 &114741787891032828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -466,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4073a5b0f20e42d41833b61474686cc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 1
+  RotationSpeed: 2
   cannonsLeft: {fileID: 1334914664672282}
   cannonsRight: {fileID: 1046424662099948}
 --- !u!114 &114793187943079124
@@ -480,14 +479,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ba181f7af11590408a14a2351bcb8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxSpeed: 5
+  MaxSpeed: 7.5
   MinSpeed: 0
-  MaxSteeringForce: 0.03
-  AllignmentFactor: 1.2
+  MaxSteeringForce: 0.02
+  AllignmentFactor: 1.3
   AllignmentRange: 15
-  CohesionFactor: 1.2
+  CohesionFactor: 1.3
   CohesionRange: 15
-  SeperationFactor: 2
+  SeperationFactor: 2.2
   SeperationRange: 8
   TargetFactor: 1
   RotationSpeed: 1
@@ -512,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
 --- !u!114 &114934905637024648
@@ -527,7 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
 --- !u!114 &114942953412672168
@@ -542,6 +541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cannonball: {fileID: 1713601143597870, guid: 9e2f2b0f9413abb4682e2c2b121cd0ef, type: 2}
-  cannonballSpeed: 400
+  cannonballSpeed: 625
   cannonballLifetime: 7
   isRight: 0
