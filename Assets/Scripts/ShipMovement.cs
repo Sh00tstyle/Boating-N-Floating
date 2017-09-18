@@ -9,9 +9,11 @@ public class ShipMovement : MonoBehaviour {
     public float acceleration;
     public float rotationSpeed;
 
-    public Transform _compass;
+    public float minFov;
+    public float maxFov;
 
     private float _currentSpeed;
+    private float _oldMaxSpeed;
 
     private Rigidbody _rigidbody;
     private Transform _rotator;
@@ -32,9 +34,11 @@ public class ShipMovement : MonoBehaviour {
         if(Input.GetKey(KeyCode.W)) {
             _currentSpeed += speedSteps;
         } else if (Input.GetKey(KeyCode.S)) {
-            _currentSpeed -= speedSteps;
+            _currentSpeed -= speedSteps;  
         }
-        
+
+        Camera.main.fieldOfView = minFov + (_currentSpeed / maxSpeed * (maxFov - minFov));
+
         _currentSpeed = Mathf.Clamp(_currentSpeed, 0f, maxSpeed);
 
         if(_rigidbody.velocity.magnitude < _currentSpeed) {
@@ -45,16 +49,26 @@ public class ShipMovement : MonoBehaviour {
     }
 
     private void ProcessRotationInput() {
+        if (_currentSpeed < maxSpeed / 100f * 15f) return;
+
         if (Input.GetKey(KeyCode.A)) {
             _rotator.Rotate(new Vector3(0, -rotationSpeed, 0));
-            _compass.Rotate(new Vector3(0, 0, -rotationSpeed));
         } else if (Input.GetKey(KeyCode.D)) {
             _rotator.Rotate(new Vector3(0, rotationSpeed, 0));
-            _compass.Rotate(new Vector3(0, 0, rotationSpeed));
         }
     }
 
     public float CurrentSpeed {
         get { return _currentSpeed; }
+    }
+
+    public void ChangeMaxSpeed(float speedModifier) {
+        _oldMaxSpeed = maxSpeed;
+
+        maxSpeed *= speedModifier;
+    }
+
+    public void ResetMaxSpeed() {
+        maxSpeed = _oldMaxSpeed;
     }
 }

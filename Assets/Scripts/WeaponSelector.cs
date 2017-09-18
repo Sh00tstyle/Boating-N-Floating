@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WeaponSelector : MonoBehaviour {
 
-	private enum Weapon { Cannonball, Clustershot, Barrelbomb };
-    private Weapon _activeWeapon;
+	public enum Weapon { Cannonball, Scattershot, Barrelbomb };
 
     private CannonballSpawnerPlayer[] _cannonballSpawner;
     private BombSpawner _bombSpawner;
@@ -13,8 +12,6 @@ public class WeaponSelector : MonoBehaviour {
     private CameraShifting _camShifting;
 
     public void Awake() {
-        _activeWeapon = Weapon.Cannonball;
-
         _cannonballSpawner = GetComponentsInChildren<CannonballSpawnerPlayer>();
         _bombSpawner = GetComponentInChildren<BombSpawner>();
 
@@ -22,25 +19,29 @@ public class WeaponSelector : MonoBehaviour {
     }
 
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.U)) {
-            UseWeapon();
-        } else if(Input.GetKeyDown(KeyCode.I)) {
-            SwitchWeapon();
+        if(Input.GetKeyDown(KeyCode.Space)) {
+            UseWeapon(Weapon.Cannonball);
         }
     }
 
-    private void UseWeapon() {
-        switch(_activeWeapon) {
+    public void UseWeapon(Weapon weaponType) {
+        CameraShifting.Direction shootingDirection = _camShifting.CurrentDirection;
+
+        switch (weaponType) {
             case Weapon.Cannonball:
                 for(int i = 0; i < _cannonballSpawner.Length; i++) {
-                    if(_camShifting.IsRight() && _cannonballSpawner[i].isRight || !_camShifting.IsRight() && !_cannonballSpawner[i].isRight) {
-                        _cannonballSpawner[i].SetDelayTimer();
-                    }
+                    if(shootingDirection == CameraShifting.Direction.Left && !_cannonballSpawner[i].isRight) _cannonballSpawner[i].SetCannonballDelay();
+                    else if(shootingDirection == CameraShifting.Direction.Right && _cannonballSpawner[i].isRight) _cannonballSpawner[i].SetCannonballDelay();
+                    else if(shootingDirection == CameraShifting.Direction.Front) _cannonballSpawner[i].SetCannonballDelay();
                 }
                 break;
 
-            case Weapon.Clustershot:
-                //Nothing yet
+            case Weapon.Scattershot:
+                for (int i = 0; i < _cannonballSpawner.Length; i++) {
+                    if (shootingDirection == CameraShifting.Direction.Left && !_cannonballSpawner[i].isRight) _cannonballSpawner[i].SetClustshotDelay();
+                    else if (shootingDirection == CameraShifting.Direction.Right && _cannonballSpawner[i].isRight) _cannonballSpawner[i].SetClustshotDelay();
+                    else if (shootingDirection == CameraShifting.Direction.Front) _cannonballSpawner[i].SetClustshotDelay();
+                }
                 break;
 
             case Weapon.Barrelbomb:
@@ -51,26 +52,4 @@ public class WeaponSelector : MonoBehaviour {
                 break;
         }
     }
-
-    private void SwitchWeapon() {
-        switch(_activeWeapon) {
-            case Weapon.Cannonball:
-                _activeWeapon = Weapon.Clustershot;
-                break;
-
-            case Weapon.Clustershot:
-                _activeWeapon = Weapon.Barrelbomb;
-                break;
-
-            case Weapon.Barrelbomb:
-                _activeWeapon = Weapon.Cannonball;
-                break;
-
-            default:
-                break;
-        }
-
-        print(_activeWeapon);
-    }
-
 }

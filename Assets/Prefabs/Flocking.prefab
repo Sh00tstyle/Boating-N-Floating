@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1421693002822646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 138.7, y: 0.00000011920929, z: 89.9}
+  m_LocalPosition: {x: 157.65, y: 2.87, z: 201.54}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -52,8 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agents: []
-  FlockSize: 3
-  SpawnRange: 25
+  FlockSize: 10
+  SpawnRange: 7
   AgentPrefab: {fileID: 1424761470806350, guid: ec40a5776b97613429eb090d4d6e1590,
     type: 2}
   Target: {fileID: 0}

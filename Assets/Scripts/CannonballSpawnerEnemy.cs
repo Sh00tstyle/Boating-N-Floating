@@ -10,6 +10,16 @@ public class CannonballSpawnerEnemy : MonoBehaviour {
     public float cannonballLifetime;
     public bool isRight;
 
+    public void Update() {
+        /*if (Input.GetKeyDown(KeyCode.Q) && !isRight) {
+            Debug.Log("Shoot left!");
+            Fire();
+        } else if (Input.GetKeyDown(KeyCode.E) && isRight) {
+            Debug.Log("Shoot right!");
+            Fire();
+        }*/
+    }
+
     public void Fire(Vector3 shipVelocity) {
         GameObject cannonballInstance = Instantiate(cannonball);
         CannonballScript ballInfo = cannonball.GetComponent<CannonballScript>();

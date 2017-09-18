@@ -7,16 +7,19 @@ public class CannonballScript : MonoBehaviour {
     public SpawnSource Source;
     public float Lifetime;
 
+    private float _damage;
+
     public GameObject WaterImpactParticles;
     public GameObject CannonballImpactParticles;
 
     private void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == Tags.CANNONBALL) return;
+
         GameObject particles = null;
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Water")) {
             particles = Instantiate(WaterImpactParticles);
             particles.transform.position = transform.position;
-            print("Hit " + other.gameObject.tag);
             Destroy(gameObject);
         }
 
@@ -26,18 +29,14 @@ public class CannonballScript : MonoBehaviour {
 
             particles = Instantiate(CannonballImpactParticles);
             particles.transform.position = transform.position;
-            print("Hit " + other.gameObject.tag);
             Destroy(gameObject);
         }
         else if (other.gameObject.tag == Tags.ENEMY && Source != SpawnSource.EnemyHeavyWarship && Source != SpawnSource.EnemyLightFrigate) {
-            //DEBUG AND PROFILE
-            //GameObject.Find("Analysis").GetComponent<Analysis>().playerinfo.ShotsHit++;
             HealthScript targetHealth = other.gameObject.GetComponent<HealthScript>();
             targetHealth.TakeDamage(10f);
 
             particles = Instantiate(CannonballImpactParticles);
             particles.transform.position = transform.position;
-            print("Hit " + other.gameObject.tag);
             Destroy(gameObject);
         }
     }
@@ -47,4 +46,9 @@ public class CannonballScript : MonoBehaviour {
 
         if (Lifetime < 0) Destroy(gameObject);
 	}
+
+    public float Damage {
+        set { _damage = value; }
+        get { return _damage; }
+    }
 }

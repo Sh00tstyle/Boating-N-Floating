@@ -9,6 +9,10 @@ public class AISpawner : MonoBehaviour {
     public float SpawnRange;
     public GameObject AgentPrefab;
     public Transform Target;
+    public GameObject CrateManager;
+    public GameObject ObstacleManager;
+
+    public GameObject EnemyParent;
 
 	// Use this for initialization
 	void Start () {
@@ -18,17 +22,23 @@ public class AISpawner : MonoBehaviour {
             Vector3 spawnVelocity = new Vector3(Random.Range(-6f, 6f), 0, Random.Range(-6f, 6f));
 
             GameObject agent = Instantiate(AgentPrefab, spawnPosition, transform.rotation);
+            agent.transform.parent = EnemyParent.transform;
             FlockingAI f = agent.GetComponent<FlockingAI>();
-            f.SetController(this);
+            f.SetSpawner(this);
             f.Velocity = spawnVelocity;
-            f.Player = Target;
+            f.ObstacleManager = ObstacleManager.GetComponent<ObstacleManager>();
+            BehaviourAI b = agent.GetComponent<BehaviourAI>();
+            b.Player = Target;
+            b.SetSpawner(this);
+            b.CrateManager = CrateManager.GetComponent<CrateManagerScript>();
             agents[i] = agent;
         }
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        Debug.DrawRay(Vector3.zero, new Vector3(1, 0, 1).normalized * 15);
-        //print((new Vector3(1, 0, 1) * 15).magnitude);
-	}
+        //Debug.DrawRay(Vector3.zero, new Vector3(5, 0, 0));
+        //Debug.DrawRay(Vector3.zero, new Vector3(4, 0, 4));
+        //print(new Vector3(4, 0, 4).magnitude);
+    }
 }

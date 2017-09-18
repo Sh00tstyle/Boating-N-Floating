@@ -5,23 +5,46 @@ using UnityEngine;
 public class BombSpawner : MonoBehaviour {
 
     public GameObject bomb;
+    public float cooldown;
+    public float damagePerBomb;
 
-    private ResourceManager _resources;
+    private float _cooldownTimer;
 
-    public void Awake() {
-        _resources = GetComponentInParent<ResourceManager>();
-    }
+    private float _oldCooldown;
+    private float _oldBombDamage;
 
     public void Update() {
-        if(Input.GetKeyDown(KeyCode.J) && _resources.BombAmount > 0) {
-            DropBomb();
-        }
+        _cooldownTimer -= Time.deltaTime;
     }
 
     public void DropBomb() {
+        if (_cooldownTimer > 0f) return;
+
         GameObject newBomb = Instantiate(bomb);
         newBomb.transform.position = transform.position;
 
-        _resources.UseBomb();
+        BombScript bombScript = newBomb.GetComponent<BombScript>();
+        bombScript.bombDamage = damagePerBomb;
+
+        _cooldownTimer = cooldown;
+    }
+
+    public void ChangeCooldown(float cooldownModifier) {
+        _oldCooldown = cooldown;
+        cooldown *= cooldownModifier;
+    }
+
+    public void ResetCooldown() {
+        cooldown = _oldCooldown;
+    }
+
+    public void ChangeDamage(float damageModifier) {
+        _oldBombDamage = damagePerBomb;
+
+        damagePerBomb *= damageModifier;
+    }
+
+    public void ResetDamage() {
+        damagePerBomb = _oldBombDamage;
     }
 }

@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/ShipMovement.unity
+- path: Assets/Scenes/TestPlayLevel(Lucy).unity
   isLoaded: 1
   isActive: 1

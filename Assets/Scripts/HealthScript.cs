@@ -5,13 +5,14 @@ using UnityEngine;
 public class HealthScript : MonoBehaviour {
 
     public float Health;
-    public float MaxRegenTime;
 
     private float _startingHealth;
     private float _remainingRegenTime;
     private float _healingAmtPerSec;
 
     private float _lastRegenTick;
+
+    private float _additionalHP;
 
     public void Awake() {
         _startingHealth = Health;
@@ -34,19 +35,18 @@ public class HealthScript : MonoBehaviour {
     }
 
     public void TakeDamage(float Damage) {
-        //DEBUG AND PROFILE
-        /*if(gameObject.tag == Tags.PLAYER) {
-            GameObject.Find("Analysis").GetComponent<Analysis>().playerinfo.DamageTaken++;
-        }*/
-
         Health -= Damage;
 
         if(Health <= 0) {
             if(gameObject.tag == Tags.PLAYER) {
                 transform.position = Vector3.zero;
                 GainHealth(100);
-            } else {
+
+                GetComponent<ReferenceHolder>().Menus.ActivateMenu(MenuManager.Menu.Death);
+            } else if(gameObject.tag == Tags.ENEMY) {
                 gameObject.SetActive(false);
+
+                //TODO Spawn crate
             }
         }
     }
@@ -64,8 +64,18 @@ public class HealthScript : MonoBehaviour {
 
         _remainingRegenTime += duration;
         _healingAmtPerSec = amountPerSec;
+    }
 
-        if (_remainingRegenTime > MaxRegenTime) _remainingRegenTime = MaxRegenTime;
+    public void AddTempHP(float additionalHP) {
+        _startingHealth += additionalHP;
+        _additionalHP = additionalHP;
+        GainHealth(additionalHP);
+    }
+
+    public void RemoveTempHP() {
+        _startingHealth -= _additionalHP;
+
+        if (Health > _startingHealth) Health = _startingHealth;
     }
 
     public float RemainingRegenTime {
